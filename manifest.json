@@ -1,0 +1,11 @@
+{
+    "name": "MinhaApp",
+    "description": "Aplicação para integração com Pipefy via OAuth2",
+    "icon": "https://meusite.com/icon.png",
+    "redirect_uris": [
+      "https://meusite.com/callback"
+    ],
+    "scopes": ["read", "write"],
+    "webhook_url": "https://meusite.com/webhook"
+  }
+  
