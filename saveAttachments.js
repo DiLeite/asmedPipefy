@@ -42,6 +42,7 @@ async function processJson(jsonFile) {
     try {
         const data = JSON.parse(fs.readFileSync(jsonFile, "utf-8"));
         var i = 0;
+        var countAttachments = 0;
         for (const item of data) {
             const folderName = `${item.title}_${item.id}`.replace(/\s+/g, "_"); // Nome da pasta sem espaços
             const localFolderPath = `${BASE_PATH}/${folderName}`;
@@ -51,6 +52,9 @@ async function processJson(jsonFile) {
 
             for (const attachment of item.attachments) {
                 const url = attachment.url;
+                if(url.lenght == 0){
+                    countAttachments++;
+                }
                 const filename = url.split("/").pop(); // Extrair nome do arquivo
 
                 console.log(`📥 Baixando: ${filename}...`);
@@ -62,6 +66,7 @@ async function processJson(jsonFile) {
             }
             
         }
+        console.log("Pastas vazias: ", countAttachments);
         console.log(i);
     } catch (error) {
         console.error("❌ Erro ao processar o JSON:", error.message);
